@@ -1,0 +1,13 @@
+{
+	"gluon": {
+		"listen": 7070,
+		"dir": "./src"
+	},
+	"database": {
+		"dialect": "mysql",
+		"host": "localhost",
+		"user": "root",
+		"password": "",
+		"database": "sprinkler"
+	}
+}

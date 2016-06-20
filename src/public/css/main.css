@@ -1,0 +1,75 @@
+.box {
+    border-radius: 10px;
+    text-align: center;
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+}
+
+.silent {
+    background-color: #d8d0d6;
+    color: white;
+}
+
+.standby {
+    background-color: #11be49;
+    color: white;
+}
+
+.operative {
+    animation-name: anim;
+    animation-iteration-count: infinite;
+    animation-duration: 500ms;
+    color: white;
+}
+
+@keyframes anim {
+    0% {
+        background-color: #be3c37;
+    }
+
+    50% {
+
+        background-color: #e82e39;
+    }
+
+    100% {
+        background-color: #be3c37;
+    }
+}
+
+.done {
+    background-color: #3ea7ff;
+    color: white;
+}
+
+.eventTable {
+    width: 100%;
+}
+
+.eventTable td {
+    padding: 10px;
+}
+
+.eventTable tr:nth-child(1) td:nth-child(1),
+.eventTable tr:nth-child(1) td:nth-child(2),
+.eventTable tr:nth-child(1) td:nth-child(3) {
+    width: 10%;
+    height: 200px;
+}
+
+.eventTable tr:nth-child(1) td:nth-child(4),
+.eventTable tr:nth-child(1) td:nth-child(5),
+.eventTable tr:nth-child(1) td:nth-child(6),
+.eventTable tr:nth-child(1) td:nth-child(7),
+.eventTable tr:nth-child(2) td {
+    width: 17.5%;
+    height: 90px;
+}
+
+
+.eventTable tr:nth-child(3) td {
+    height: 90px;
+    padding: 10px;
+}
+
