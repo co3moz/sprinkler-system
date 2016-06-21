@@ -25,16 +25,15 @@
 
 @keyframes anim {
     0% {
-        background-color: #be3c37;
+        background-color: #889e60;
     }
 
     50% {
-
-        background-color: #e82e39;
+        background-color: #aac379;
     }
 
     100% {
-        background-color: #be3c37;
+        background-color: #889e60;
     }
 }
 

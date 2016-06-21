@@ -1,7 +1,10 @@
 {
 	"gluon": {
 		"listen": 7070,
-		"dir": "./src"
+		"dir": "./src",
+		"auth": {
+			"base": "token"
+		}
 	},
 	"database": {
 		"dialect": "mysql",
