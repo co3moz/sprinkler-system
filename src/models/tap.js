@@ -19,9 +19,7 @@ const Tap = db.define('Tap', {
   },
 
   endTime: {
-    type: Sequelize.INTEGER,
-    defaultValue: 0,
-    allowNull: false
+    type: Sequelize.DATE
   },
 
   line: {

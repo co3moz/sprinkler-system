@@ -1,9 +1,25 @@
 <div class="container alwaysLandscape" ng-controller="DashboardController">
     <div class="row">
-        Sistem durumu: <b>{{active.active ? "Aktif" : "Pasif"}}</b><br>
-        <span ng-if="active.active">
-            Sistemin aktif hale getirildiği tarih: <b>{{start | date: 'medium'}}</b><br>
-            Sistem şu süredir çalışıyor: <b>{{startFromNow}}</b>
+        <span class="col-md-6 floatLeft">
+            Sistem durumu: <b>{{active ? "Aktif" : "Pasif"}}</b><br>
+        </span>
+        <span ng-if="active" class="col-md-6 floatRight">
+            <table class="floatRight">
+                <tr>
+                    <td>
+                        Sistemin aktif hale getirildiği tarih: <b>{{startDate}}</b><br>
+                        Sistem şu süredir çalışıyor: <b>{{startFromNow}}</b>
+                    </td>
+                    <td>
+                        <button ng-click="stopSprinkler()" class="btn btn-danger floatRight" style="height: 40px">
+                            Durdur
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </span>
+        <span ng-if="!active" class="col-md-6 floatRight">
+            <button ng-click="startSprinkler()" class="btn btn-primary floatRight" style="height: 40px">Başlat</button>
         </span>
     </div>
     <div class="row">
@@ -11,56 +27,56 @@
             <tbody>
             <tr>
                 <td rowspan="3">
-                    <tap-directive ng-if="taps[0]" tap="taps[0]" >
+                    <tap-directive ng-if="taps[0]" tap="taps[0]" isActive="active">
                     </tap-directive>
                 </td>
                 <td rowspan="3">
-                    <tap-directive ng-if="taps[1]" tap="taps[1]" >
+                    <tap-directive ng-if="taps[1]" tap="taps[1]" isActive="active">
                     </tap-directive>
                 </td>
                 <td rowspan="3">
-                    <tap-directive ng-if="taps[2]" tap="taps[2]" >
+                    <tap-directive ng-if="taps[2]" tap="taps[2]" isActive="active">
                     </tap-directive>
                 </td>
                 <td>
-                    <tap-directive ng-if="taps[3]" tap="taps[3]" >
+                    <tap-directive ng-if="taps[3]" tap="taps[3]" isActive="active">
                     </tap-directive>
                 </td>
                 <td>
-                    <tap-directive ng-if="taps[4]" tap="taps[4]" >
+                    <tap-directive ng-if="taps[4]" tap="taps[4]" isActive="active">
                     </tap-directive>
                 </td>
                 <td>
-                    <tap-directive ng-if="taps[5]" tap="taps[5]" >
+                    <tap-directive ng-if="taps[5]" tap="taps[5]" isActive="active">
                     </tap-directive>
                 </td>
                 <td>
-                    <tap-directive ng-if="taps[6]" tap="taps[6]" >
+                    <tap-directive ng-if="taps[6]" tap="taps[6]" isActive="active">
                     </tap-directive>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <tap-directive ng-if="taps[7]" tap="taps[7]" >
+                    <tap-directive ng-if="taps[7]" tap="taps[7]" isActive="active">
                     </tap-directive>
                 </td>
                 <td>
 
-                    <tap-directive ng-if="taps[8]" tap="taps[8]" >
+                    <tap-directive ng-if="taps[8]" tap="taps[8]" isActive="active">
                     </tap-directive>
                 </td>
                 <td>
-                    <tap-directive ng-if="taps[9]" tap="taps[9]" >
+                    <tap-directive ng-if="taps[9]" tap="taps[9]" isActive="active">
                     </tap-directive>
                 </td>
                 <td>
-                    <tap-directive ng-if="taps[10]" tap="taps[10]" >
+                    <tap-directive ng-if="taps[10]" tap="taps[10]" isActive="active">
                     </tap-directive>
                 </td>
             </tr>
             <tr>
                 <td colspan="4">
-                    <tap-directive ng-if="taps[11]" tap="taps[11]" >
+                    <tap-directive ng-if="taps[11]" tap="taps[11]" isActive="active">
                     </tap-directive>
                 </td>
             </tr>

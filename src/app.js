@@ -79,7 +79,8 @@ const app = gluon({
           }
         });
       });
-
     });
+
+    require('./jobs/event');
   }
 });

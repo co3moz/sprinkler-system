@@ -17,9 +17,10 @@
     "host": "localhost",
     "user": "root",
     "password": "",
-    "database": "sprinkler"
+    "database": "sprinkler",
+    "timezone": "+03:00"
   },
   "jobs": {
-    "mainTimer": "*/1 * * * *"
+    "mainTimer": "*/5 * * * * *"
   }
 }

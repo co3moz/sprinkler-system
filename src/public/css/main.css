@@ -1,4 +1,5 @@
 @import "login.css";
+
 .box {
     border-radius: 10px;
     text-align: center;
@@ -72,7 +73,6 @@
     height: 90px;
 }
 
-
 .eventTable tr:nth-child(3) td {
     height: 90px;
     padding: 10px;
@@ -86,7 +86,7 @@
     color: #27f8ff;
 }
 
-@media only screen and (orientation:portrait){
+@media only screen and (orientation: portrait) {
     .alwaysLandscape {
         height: 100vw;
         -webkit-transform: rotate(90deg);
@@ -96,7 +96,8 @@
         transform: rotate(90deg);
     }
 }
-@media only screen and (orientation:landscape){
+
+@media only screen and (orientation: landscape) {
     .alwaysLandscape {
         -webkit-transform: rotate(0deg);
         -moz-transform: rotate(0deg);
@@ -104,4 +105,14 @@
         -ms-transform: rotate(0deg);
         transform: rotate(0deg);
     }
+}
+
+.floatLeft {
+    float: left;
+    text-align: left;
+}
+
+.floatRight {
+    float: right;
+    text-align: right;
 }

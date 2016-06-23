@@ -1,6 +1,7 @@
 <div class="box" ng-class="tap.status" ng-click="tapClick(tap)" context-menu="menuOptions">
     {{tap.name}}<br>
     #{{tap.line}}<br>
-    {{duration(tap.duration)}}<br>
+    <span ng-if="tap.status != 'OPERATIVE'">{{duration(tap.duration)}}</span>
+    <span ng-if="tap.status == 'OPERATIVE'">{{durationDate(tap.endTime)}}</span><br>
     GPIO {{tap.gpio}}
 </div>

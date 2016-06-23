@@ -3,7 +3,8 @@ app.directive("tapDirective", function () {
     restrict: 'E',
     replace: true,
     scope: {
-      tap: '=tap'
+      tap: '=tap',
+      isActive: '=isActive'
     },
     controller: ['$scope', '$http', 'sweet', function ($scope, $http, sweet) {
       $scope.tapClick = function (tap) {
@@ -18,6 +19,20 @@ app.directive("tapDirective", function () {
         }
 
         return duration / (60 * 1000) + " dakika";
+      };
+
+      $scope.durationDate = function (date) {
+        var duration = new Date(date) - (new Date);
+
+        if (duration < 60 * 1000) {
+          return parseInt(duration / 1000) + " saniye";
+        }
+
+        if (duration >= 60 * 60 * 1000) {
+          return parseInt(duration / (3600000)) + " saat";
+        }
+
+        return parseInt(duration / (60000)) + " dakika";
       };
 
       $scope.changeDuration = function (duration) {
