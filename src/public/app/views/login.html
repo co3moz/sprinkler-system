@@ -1,0 +1,15 @@
+<div class="login_wrapper" ng-controller="LoginController">
+    <div class="wrapper">
+        <form class="login" ng-submit="login()" ng-class="loginClass">
+            <p class="title"><img src="images/sprinkler.png"> Sulama sistemi</p>
+            <input type="text" placeholder="Kullanıcı adı" ng-model="userName" autofocus/>
+            <i class="fa fa-user"></i>
+            <input type="password" ng-model="userPassword" placeholder="Şifre"/>
+            <i class="fa fa-key"></i>
+            <button>
+                <i class="spinner"></i>
+                <span class="state">{{message || "Giriş yap"}}</span>
+            </button>
+        </form>
+    </div>
+</div>

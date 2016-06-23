@@ -1,3 +1,4 @@
+@import "login.css";
 .box {
     border-radius: 10px;
     text-align: center;
@@ -6,17 +7,22 @@
     height: 100%;
 }
 
-.silent {
+.LOCKED {
     background-color: #d8d0d6;
     color: white;
 }
 
-.standby {
+.SILENT {
+    background-color: #ff5c00;
+    color: white;
+}
+
+.STANDBY {
     background-color: #11be49;
     color: white;
 }
 
-.operative {
+.OPERATIVE {
     animation-name: anim;
     animation-iteration-count: infinite;
     animation-duration: 500ms;
@@ -37,7 +43,7 @@
     }
 }
 
-.done {
+.DONE {
     background-color: #3ea7ff;
     color: white;
 }
@@ -72,3 +78,30 @@
     padding: 10px;
 }
 
+.navbar-sprinkler {
+    border-radius: 0;
+}
+
+.navbar-sprinkler .navbar-brand {
+    color: #27f8ff;
+}
+
+@media only screen and (orientation:portrait){
+    .alwaysLandscape {
+        height: 100vw;
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+}
+@media only screen and (orientation:landscape){
+    .alwaysLandscape {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+}

@@ -1,16 +1,25 @@
 {
-	"gluon": {
-		"listen": 7070,
-		"dir": "./src",
-		"auth": {
-			"base": "token"
-		}
-	},
-	"database": {
-		"dialect": "mysql",
-		"host": "localhost",
-		"user": "root",
-		"password": "",
-		"database": "sprinkler"
-	}
+  "gluon": {
+    "listen": 7070,
+    "dir": "./src",
+    "auth": {
+      "base": "token",
+      "allow": [
+      ]
+    },
+    "publicSource": [
+      "./public/build",
+      "./public"
+    ]
+  },
+  "database": {
+    "dialect": "mysql",
+    "host": "localhost",
+    "user": "root",
+    "password": "",
+    "database": "sprinkler"
+  },
+  "jobs": {
+    "mainTimer": "*/1 * * * *"
+  }
 }

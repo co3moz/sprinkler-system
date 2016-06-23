@@ -1,14 +1,26 @@
 const Sequelize = require('sequelize');
 const db = require('gluon/db');
 
-const Pod = db.define('Pod', {
+const Tap = db.define('Tap', {
   name: {
     type: Sequelize.STRING
   },
 
   status: {
-    type: Sequelize.ENUM('SILENT', 'STANDBY', 'OPERATIVE', 'DONE'),
+    type: Sequelize.ENUM('SILENT', 'STANDBY', 'OPERATIVE', 'DONE', 'LOCKED'),
     defaultValue: 'SILENT',
+    allowNull: false
+  },
+
+  duration: {
+    type: Sequelize.INTEGER,
+    defaultValue: 600000,
+    allowNull: false
+  },
+
+  endTime: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
     allowNull: false
   },
 
@@ -18,12 +30,6 @@ const Pod = db.define('Pod', {
     allowNull: false
   },
 
-  locked: {
-    type: Sequelize.BOOLEAN,
-    allowNull: false,
-    defaultValue: false
-  },
-
   gpio: {
     type: Sequelize.INTEGER,
     defaultValue: 0,
@@ -31,10 +37,11 @@ const Pod = db.define('Pod', {
   }
 }, {
   freezeTableName: true,
-  paranoid: true,
+  timestamps: false,
+  paranoid: false,
   indexes: [{
     fields: ['name']
   }]
 });
 
-module.exports = Pod;
+module.exports = Tap;

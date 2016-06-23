@@ -2,22 +2,23 @@ const gluon = require('gluon');
 const app = gluon({
   ready: (app) => {
     const db = require('gluon/db');
-    const Pod = require('./models/pod');
+    const Tap = require('./models/tap');
     const Setting = require('./models/setting');
     const User = require('./models/user');
-    db.sync({force: true}).then(() => {
+    const Token = require('gluon/token');
+
+    db.sync().then(() => {
       for (var i = 1; i <= 12; i++) {
         var z = i;
-        Pod.findOrCreate({
+        Tap.findOrCreate({
           where: {
             id: z
           },
 
           defaults: {
             name: 'Sulama ' + z,
-            status: 'SILENT',
+            status: (z >= 1 && z <= 3) || (z == 12) ? 'LOCKED' : 'SILENT',
             line: z,
-            locked: false,
             gpio: 20 + z
           }
         });
@@ -25,11 +26,22 @@ const app = gluon({
 
       Setting.findOrCreate({
         where: {
-          param: 'run'
+          param: 'active'
         },
 
         defaults: {
-          param: 'run',
+          param: 'active',
+          value: '0'
+        }
+      });
+
+      Setting.findOrCreate({
+        where: {
+          param: 'start'
+        },
+
+        defaults: {
+          param: 'start',
           value: '0'
         }
       });
@@ -54,7 +66,20 @@ const app = gluon({
           account: 'co3moz',
           password: 'c4ca4238a0b923820dcc509a6f75849b'
         }
+      }).spread((data) => {
+        Token.findOrCreate({
+          where: {
+            code: '6b71c9c43cafcc0314f45e5ad87b4b06'
+          },
+
+          defaults: {
+            code: '6b71c9c43cafcc0314f45e5ad87b4b06',
+            ownerId: data.id,
+            expire: Token.defaultExpire()
+          }
+        });
       });
+
     });
   }
 });
