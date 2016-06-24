@@ -38,6 +38,7 @@
     "slicknav": "^1.0.7",
     "angular-moment": "^0.10.3",
     "angular-bootstrap-contextmenu": "^0.9.7",
-    "angular-sweetalert": "angular-h-sweetalert#^1.4.7"
+    "angular-sweetalert": "angular-h-sweetalert#^1.4.7",
+    "angular-cookies": "^1.5.7"
   }
 }

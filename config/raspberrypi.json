@@ -1,0 +1,29 @@
+{
+  "gluon": {
+    "listen": 7070,
+    "dir": "./src",
+    "auth": {
+      "base": "token",
+      "allow": [
+      ]
+    },
+    "publicSource": [
+      "./public/build",
+      "./public"
+    ]
+  },
+  "database": {
+    "dialect": "mysql",
+    "host": "localhost",
+    "user": "root",
+    "password": "45554555",
+    "database": "sprinkler",
+    "timezone": "+03:00"
+  },
+  "jobs": {
+    "mainTimer": "*/5 * * * * *"
+  },
+  "logger": {
+    "level": "LOG"
+  }
+}
