@@ -23,7 +23,7 @@ angular.module('app').controller('ApplicationController', ['$scope', '$window', 
 }]);
 
 app.config(['$httpProvider', function ($httpProvider) {
-  $httpProvider.interceptors.push(function ($q, $cookies, $location, $rootScope) {
+  $httpProvider.interceptors.push(function ($q, $cookies, $location, $interval, $rootScope) {
     return {
       'request': function (config) {
         config.headers['token'] = $cookies.get('token');
@@ -33,6 +33,11 @@ app.config(['$httpProvider', function ($httpProvider) {
       'responseError': function (data) {
         if (data.status == 408 || data.status == 401) {
           $cookies.put('token', '');
+
+          if ($rootScope.dashboardFetchTaps) {
+            $interval.cancel($rootScope.dashboardFetchTaps);
+            $rootScope.dashboardFetchTaps = null;
+          }
 
           var path = $location.path();
           if (path != '/app/login') {

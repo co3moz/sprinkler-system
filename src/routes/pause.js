@@ -2,6 +2,7 @@ const gluon = require('gluon');
 const router = gluon.router();
 
 const Setting = require('../models/setting');
+const Tap = require('../models/tap');
 
 router.get('/', (req, res) => {
   Setting.find({
@@ -9,17 +10,22 @@ router.get('/', (req, res) => {
       param: 'active'
     }
   }).then((data) => {
-    Setting.find({
+    data.value = "2";
+    data.save();
+
+    Tap.update({status: 'STANDBY'}, {
       where: {
-        param: 'start'
+        status: {
+          $in: ['OPERATIVE']
+        }
       }
-    }).then((start) => {
-      res.ok({
-        active: data.value != "0",
-        paused: data.value == "2",
-        start: data.value != "0" ? parseInt(start.value) : 0
-      });
-    }).catch(res.database);
+    });
+
+    res.ok({
+      active: true,
+      paused: true,
+      start: 0
+    });
   }).catch(res.database);
 });
 

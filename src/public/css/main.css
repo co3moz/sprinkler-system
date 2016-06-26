@@ -1,7 +1,7 @@
 @import "login.css";
 
 .box {
-    border-radius: 10px;
+    border-radius: 3px;
     text-align: center;
     vertical-align: middle;
     width: 100%;
@@ -9,17 +9,17 @@
 }
 
 .LOCKED {
-    background-color: #d8d0d6;
+    background-color: #95a5a6;
     color: white;
 }
 
 .SILENT {
-    background-color: #ff5c00;
+    background-color: #e74c3c;
     color: white;
 }
 
 .STANDBY {
-    background-color: #11be49;
+    background-color: #2ecc71;
     color: white;
 }
 
@@ -32,20 +32,20 @@
 
 @keyframes anim {
     0% {
-        background-color: #889e60;
+        background-color: #f39c12;
     }
 
     50% {
-        background-color: #aac379;
+        background-color: #f1c40f;
     }
 
     100% {
-        background-color: #889e60;
+        background-color: #f39c12;
     }
 }
 
 .DONE {
-    background-color: #3ea7ff;
+    background-color: #2980b9;
     color: white;
 }
 
@@ -83,7 +83,7 @@
 }
 
 .navbar-sprinkler .navbar-brand {
-    color: #27f8ff;
+    color: #3498db;
 }
 
 @media only screen and (orientation: portrait) {

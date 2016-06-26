@@ -8,11 +8,6 @@ module.exports = () => {
     }
   }).then((active) => {
     if (active.value != '1') {
-      Tap.update({status: 'STANDBY'}, {
-        where: {
-          status: 'OPERATIVE'
-        }
-      });
       return;
     }
 
@@ -29,7 +24,7 @@ module.exports = () => {
           order: ['line', 'id']
         }).then((tap) => {
           if (tap == null) {
-            Tap.update({status: 'STANDBY', endTime: null}, {
+            Tap.update({status: 'STANDBY', cycle: null}, {
               where: {
                 status: 'DONE'
               }
@@ -41,19 +36,20 @@ module.exports = () => {
           }
 
           tap.status = 'OPERATIVE';
-          if (tap.endTime == null) {
-            tap.endTime = Date.now() + tap.duration;
+          if (tap.cycle == null) {
+            tap.cycle = tap.duration;
           }
           tap.save();
         });
         return;
       }
 
-      if (tap.endTime < Date.now()) {
-        tap.endTime = null;
+      if (--tap.cycle < 1) {
+        tap.cycle = null;
         tap.status = 'DONE';
-        tap.save();
       }
+
+      tap.save();
     });
   })
 };

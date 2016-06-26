@@ -1,4 +1,4 @@
-app.controller('DashboardController', ['$scope', '$http', '$interval', function ($scope, $http, $interval) {
+app.controller('DashboardController', ['$scope', '$http', '$interval', '$rootScope', function ($scope, $http, $interval, $rootScope) {
   console.log("Dashboard Controller worked.");
 
   $scope.taps = [];
@@ -6,6 +6,7 @@ app.controller('DashboardController', ['$scope', '$http', '$interval', function 
   $scope.fetchTaps = function () {
     $http.get('/active').then(function (data) {
       $scope.active = data.data.active;
+      $scope.paused = data.data.paused;
       $scope.start = new Date(data.data.start);
       $scope.startDate = $scope.start.toLocaleString();
       $scope.startFromNow = moment(data.data.start).fromNow();
@@ -23,6 +24,12 @@ app.controller('DashboardController', ['$scope', '$http', '$interval', function 
     });
   };
 
+  $scope.waitSprinkler = function () {
+    $http.get('/pause').then(function () {
+      $scope.fetchTaps();
+    });
+  };
+
   $scope.stopSprinkler = function () {
     $http.get('/stop').then(function () {
       $scope.fetchTaps();
@@ -30,5 +37,10 @@ app.controller('DashboardController', ['$scope', '$http', '$interval', function 
   };
 
   $scope.fetchTaps();
-  $interval($scope.fetchTaps, 10000);
+
+  if ($rootScope.dashboardFetchTaps) {
+    $interval.cancel($rootScope.dashboardFetchTaps);
+    $rootScope.dashboardFetchTaps = null;
+  }
+  $rootScope.dashboardFetchTaps = $interval($scope.fetchTaps, 6000);
 }]);

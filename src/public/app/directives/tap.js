@@ -14,25 +14,23 @@ app.directive("tapDirective", function () {
       };
 
       $scope.duration = function (duration) {
-        if (duration >= 60 * 60 * 1000) {
-          return duration / (60 * 60 * 1000) + " saat";
+        if (duration >= 60 * 60) {
+          return duration / (60 * 60) + " saat";
         }
 
-        return duration / (60 * 1000) + " dakika";
+        return duration / (60) + " dakika";
       };
 
-      $scope.durationDate = function (date) {
-        var duration = new Date(date) - (new Date);
-
-        if (duration < 60 * 1000) {
-          return parseInt(duration / 1000) + " saniye";
+      $scope.durationDate = function (duration) {
+        if (duration < 60) {
+          return parseInt(duration) + " saniye";
         }
 
-        if (duration >= 60 * 60 * 1000) {
-          return parseInt(duration / (3600000)) + " saat";
+        if (duration >= 60 * 60) {
+          return parseInt(duration / (3600)) + " saat";
         }
 
-        return parseInt(duration / (60000)) + " dakika";
+        return parseInt(duration / (60)) + " dakika";
       };
 
       $scope.changeDuration = function (duration) {
@@ -53,6 +51,39 @@ app.directive("tapDirective", function () {
       };
 
       $scope.menuOptions = [
+
+        ['Yeniden adlandır', function () {
+          sweet.show({
+            title: 'Yeniden Adlandır',
+            text: 'Sulanacak bölgeyi adlandırmak ortamın anlaşılmasını kolaylaştırır',
+            type: 'input',
+            inputValue: $scope.tap.name,
+            showCancelButton: true,
+            closeOnConfirm: false,
+            animation: 'slide-from-top',
+            inputPlaceholder: 'Buraya isimi yazın'
+          }, function (inputValue) {
+            if (inputValue === false) return false;
+            if (inputValue === '') {
+              sweet.showInputError('Bir isim vermeniz gerekmektedir!');
+              return false;
+            }
+            $http.post('/tap/' + $scope.tap.id + '/rename/' + inputValue).then(function (data) {
+              $scope.tap = data.data;
+            });
+            sweet.show({
+              title: 'Değişim tamamlandı',
+              text: 'Güncelleniyor...',
+              timer: 100,
+              showConfirmButton: false
+            });
+          });
+        }], ['Kilitle / Kilidi aç', function () {
+          $http.post('/tap/' + $scope.tap.id + '/lock').then(function (data) {
+            $scope.tap = data.data;
+          });
+        }],
+        null,
         ['Yeniden sırala', function () {
 
         }, [
@@ -93,67 +124,35 @@ app.directive("tapDirective", function () {
             $scope.changeLine(12);
           }]
         ]],
-        ['Yeniden adlandır', function () {
-          sweet.show({
-            title: 'Yeniden Adlandır',
-            text: 'Sulanacak bölgeyi adlandırmak ortamın anlaşılmasını kolaylaştırır',
-            type: 'input',
-            inputValue: $scope.tap.name,
-            showCancelButton: true,
-            closeOnConfirm: false,
-            animation: 'slide-from-top',
-            inputPlaceholder: 'Buraya isimi yazın'
-          }, function (inputValue) {
-            if (inputValue === false) return false;
-            if (inputValue === '') {
-              sweet.showInputError('Bir isim vermeniz gerekmektedir!');
-              return false;
-            }
-            $http.post('/tap/' + $scope.tap.id + '/rename/' + inputValue).then(function (data) {
-              $scope.tap = data.data;
-            });
-            sweet.show({
-              title: 'Değişim tamamlandı',
-              text: 'Güncelleniyor...',
-              timer: 100,
-              showConfirmButton: false
-            });
-          });
-        }], ['Kilitle / Kilidi aç', function () {
-          $http.post('/tap/' + $scope.tap.id + '/lock').then(function (data) {
-            $scope.tap = data.data;
-          });
-        }],
-        null,
         ['Süreyi değiştir', function () {
 
         }, [
           ['5 dakika', function () {
-            $scope.changeDuration(5 * 60 * 1000);
+            $scope.changeDuration(60);
           }],
           ['10 dakika', function () {
-            $scope.changeDuration(10 * 60 * 1000);
+            $scope.changeDuration(2 * 60);
           }],
           ['15 dakika', function () {
-            $scope.changeDuration(15 * 60 * 1000);
+            $scope.changeDuration(3 * 60);
           }],
           ['20 dakika', function () {
-            $scope.changeDuration(20 * 60 * 1000);
+            $scope.changeDuration(4 * 60);
           }],
           ['25 dakika', function () {
-            $scope.changeDuration(25 * 60 * 1000);
+            $scope.changeDuration(5 * 60);
           }],
           ['30 dakika', function () {
-            $scope.changeDuration(30 * 60 * 1000);
+            $scope.changeDuration(6 * 60);
           }],
           ['40 dakika', function () {
-            $scope.changeDuration(40 * 60 * 1000);
+            $scope.changeDuration(8 * 60);
           }],
           ['50 dakika', function () {
-            $scope.changeDuration(50 * 60 * 1000);
+            $scope.changeDuration(10 * 60);
           }],
           ['1 saat', function () {
-            $scope.changeDuration(60 * 60 * 1000);
+            $scope.changeDuration(12 * 60);
           }]
         ]],
         ['GPIO değiştir', function () {

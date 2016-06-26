@@ -9,6 +9,7 @@ router.get('/', (req, res) => {
       param: 'active'
     }
   }).then((data) => {
+    var previous = data.value;
     data.value = "1";
 
     Setting.find({
@@ -16,14 +17,15 @@ router.get('/', (req, res) => {
         param: 'start'
       }
     }).then((start) => {
-      start.value = Date.now().toString();
+      if (previous == "0")  start.value = Date.now().toString();
 
       data.save();
       start.save();
 
       res.ok({
-        active: data.value == "1",
-        start: data.value == "1" ? parseInt(start.value) : 0
+        active: true,
+        paused: false,
+        start: data.value != "0" ? parseInt(start.value) : 0
       });
     }).catch(res.database);
   }).catch(res.database);

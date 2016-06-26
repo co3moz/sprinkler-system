@@ -7,7 +7,7 @@ const app = gluon({
     const User = require('./models/user');
     const Token = require('gluon/token');
 
-    db.sync().then(() => {
+    db.sync({force: true }).then(() => {
       for (var i = 1; i <= 12; i++) {
         var z = i;
         Tap.findOrCreate({

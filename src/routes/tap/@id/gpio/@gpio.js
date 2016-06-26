@@ -10,7 +10,7 @@ router.post('/', (req, res, next) => {
       param: 'active'
     }
   }).then((active) => {
-    if (active.value != '1') {
+    if (active.value == '0') {
       return next();
     }
 

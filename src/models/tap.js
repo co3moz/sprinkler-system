@@ -14,12 +14,12 @@ const Tap = db.define('Tap', {
 
   duration: {
     type: Sequelize.INTEGER,
-    defaultValue: 600000,
+    defaultValue: 120,
     allowNull: false
   },
 
-  endTime: {
-    type: Sequelize.DATE
+  cycle: {
+    type: Sequelize.INTEGER
   },
 
   line: {

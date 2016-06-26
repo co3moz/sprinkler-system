@@ -11,15 +11,23 @@
                         Sistem şu süredir çalışıyor: <b>{{startFromNow}}</b>
                     </td>
                     <td>
-                        <button ng-click="stopSprinkler()" class="btn btn-danger floatRight" style="height: 40px">
+                        <button ng-click="stopSprinkler()" class="btn btn-danger floatRight" style="height: 40px; margin: 5px">
                             Durdur
+                        </button>
+
+                        <button ng-if="!paused" ng-click="waitSprinkler()" class="btn btn-warning floatRight" style="height: 40px; margin: 5px">
+                            Beklet
+                        </button>
+
+                        <button ng-if="paused" ng-click="startSprinkler()" class="btn btn-success floatRight" style="height: 40px; margin: 5px">
+                            Devam et
                         </button>
                     </td>
                 </tr>
             </table>
         </span>
         <span ng-if="!active" class="col-md-6 floatRight">
-            <button ng-click="startSprinkler()" class="btn btn-primary floatRight" style="height: 40px">Başlat</button>
+            <button ng-click="startSprinkler()" class="btn btn-primary floatRight" style="height: 40px; margin: 5px">Başlat</button>
         </span>
     </div>
     <div class="row">
