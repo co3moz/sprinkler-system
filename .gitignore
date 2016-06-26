@@ -3,3 +3,4 @@ logs
 .idea
 src/public/vendor
 src/public/build
+.tmp

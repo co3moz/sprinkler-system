@@ -16,6 +16,8 @@ angular.module('app').controller('ApplicationController', ['$scope', '$window', 
     device: device
   };
 
+
+
   function isSmartDevice ($window) {
     var ua = $window['navigator']['userAgent'] || $window['navigator']['vendor'] || $window['opera'];
     return (/iPhone|iPod|iPad|Silk|Android|BlackBerry|Opera Mini|IEMobile/).test(ua);
@@ -23,7 +25,7 @@ angular.module('app').controller('ApplicationController', ['$scope', '$window', 
 }]);
 
 app.config(['$httpProvider', function ($httpProvider) {
-  $httpProvider.interceptors.push(function ($q, $cookies, $location, $interval, $rootScope) {
+  $httpProvider.interceptors.push(['$q', '$cookies', '$location', '$interval', '$rootScope', function ($q, $cookies, $location, $interval, $rootScope) {
     return {
       'request': function (config) {
         config.headers['token'] = $cookies.get('token');
@@ -48,5 +50,5 @@ app.config(['$httpProvider', function ($httpProvider) {
         return data;
       }
     };
-  });
+  }]);
 }]);

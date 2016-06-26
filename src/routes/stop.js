@@ -4,6 +4,8 @@ const router = gluon.router();
 const Setting = require('../models/setting');
 const Tap = require('../models/tap');
 
+const pinController = require('../jobs/pinController');
+
 router.get('/', (req, res) => {
   Setting.find({
     where: {
@@ -20,6 +22,8 @@ router.get('/', (req, res) => {
         }
       }
     });
+
+    pinController();
 
     res.ok({
       active: false,
