@@ -37,7 +37,7 @@ module.exports = () => {
       } else {
         pins[tap.gpio].writeSync(0);
         pins[tap.gpio].unexport();
-        delete pin[tap.gpio];
+        delete pins[tap.gpio];
       }
     });
   });
