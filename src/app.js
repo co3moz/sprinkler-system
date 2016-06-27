@@ -11,7 +11,7 @@ gluon({
     const User = require('./models/user');
     const Token = require('gluon/token');
 
-    db.sync({force: true}).then(() => {
+    db.sync().then(() => {
       Tap.findOrCreate({
         where: {
           id: 1
@@ -21,7 +21,7 @@ gluon({
           name: 'Yol Boyu',
           status: 'LOCKED',
           line: 12,
-          gpio: 21
+          gpio: 11
         }
       }).then(() => {
         return Tap.findOrCreate({
@@ -33,7 +33,7 @@ gluon({
             name: 'Orta',
             status: 'LOCKED',
             line: 11,
-            gpio: 22
+            gpio: 13
           }
         })
       }).then(() => {
@@ -46,7 +46,7 @@ gluon({
             name: 'Erik Altı',
             status: 'LOCKED',
             line: 10,
-            gpio: 23
+            gpio: 15
           }
         })
       }).then(() => {
@@ -59,7 +59,7 @@ gluon({
             name: 'Sivri Biber',
             status: 'SILENT',
             line: 4,
-            gpio: 24
+            gpio: 31
           }
         })
       }).then(() => {
@@ -72,7 +72,7 @@ gluon({
             name: 'Kapya',
             status: 'SILENT',
             line: 3,
-            gpio: 25
+            gpio: 33
           }
         })
       }).then(() => {
@@ -85,7 +85,7 @@ gluon({
             name: 'Kıl Biber',
             status: 'SILENT',
             line: 2,
-            gpio: 7
+            gpio: 35
           }
         })
       }).then(() => {
@@ -98,7 +98,7 @@ gluon({
             name: 'Salatalık',
             status: 'SILENT',
             line: 1,
-            gpio: 6
+            gpio: 37
           }
         })
       }).then(() => {
@@ -111,7 +111,7 @@ gluon({
             name: 'Maraş',
             status: 'SILENT',
             line: 8,
-            gpio: 28
+            gpio: 32
           }
         })
       }).then(() => {
@@ -124,7 +124,7 @@ gluon({
             name: 'Sivri Biber',
             status: 'SILENT',
             line: 7,
-            gpio: 29
+            gpio: 36
           }
         })
       }).then(() => {
@@ -137,7 +137,7 @@ gluon({
             name: 'Domates',
             status: 'SILENT',
             line: 6,
-            gpio: 30
+            gpio: 38
           }
         })
       }).then(() => {
@@ -150,7 +150,7 @@ gluon({
             name: 'Kabak',
             status: 'SILENT',
             line: 5,
-            gpio: 31
+            gpio: 40
           }
         })
       }).then(() => {
@@ -163,7 +163,7 @@ gluon({
             name: 'Kıyı',
             status: 'LOCKED',
             line: 9,
-            gpio: 32
+            gpio: 7
           }
         }).then(() => {
           return Setting.findOrCreate({
