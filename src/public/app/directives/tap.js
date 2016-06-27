@@ -161,31 +161,31 @@ app.directive("tapDirective", function () {
           ['Sol', function () {
 
           }, [
-            ['7 (soldan 4.)', function () {
+            ['4 (pin 7, soldan 4.)', function () {
               $scope.changeGPIO(4);
             }],
-            ['11 (soldan 6.)', function () {
+            ['17 (pin 11, soldan 6.)', function () {
               $scope.changeGPIO(17);
             }],
-            ['13 (soldan 7.)', function () {
+            ['27 (pin 13, soldan 7.)', function () {
               $scope.changeGPIO(27);
             }],
-            ['15 (soldan 8.)', function () {
+            ['22 (pin 15, soldan 8.)', function () {
               $scope.changeGPIO(22);
             }],
-            ['29 (soldan 15.)', function () {
+            ['5 (pin 29, soldan 15.)', function () {
               $scope.changeGPIO(5);
             }],
-            ['31 (soldan 16.)', function () {
+            ['6 (pin 31, soldan 16.)', function () {
               $scope.changeGPIO(6);
             }],
-            ['33 (soldan 17.)', function () {
+            ['13 (pin 33, soldan 17.)', function () {
               $scope.changeGPIO(13);
             }],
-            ['35 (soldan 18.)', function () {
+            ['19 (pin 35, soldan 18.)', function () {
               $scope.changeGPIO(19);
             }],
-            ['37 (soldan 19.)', function () {
+            ['26 (pin 37, soldan 19.)', function () {
               $scope.changeGPIO(26);
             }]
           ]],
@@ -193,28 +193,28 @@ app.directive("tapDirective", function () {
           ['Sağ', function () {
 
           }, [
-            ['12 (sağdan 6.)', function () {
+            ['18 (pin 12, sağdan 6.)', function () {
               $scope.changeGPIO(18);
             }],
-            ['16 (sağdan 8.)', function () {
+            ['23 (pin 16, sağdan 8.)', function () {
               $scope.changeGPIO(23);
             }],
-            ['18 (sağdan 9.)', function () {
+            ['24 (pin 18, sağdan 9.)', function () {
               $scope.changeGPIO(24);
             }],
-            ['22 (sağdan 11.)', function () {
+            ['25 (pin 22, sağdan 11.)', function () {
               $scope.changeGPIO(25);
             }],
-            ['32 (sağdan 16.)', function () {
+            ['12 (pin 32, sağdan 16.)', function () {
               $scope.changeGPIO(12);
             }],
-            ['36 (sağdan 18.)', function () {
+            ['16 (pin 36, sağdan 18.)', function () {
               $scope.changeGPIO(16);
             }],
-            ['38 (sağdan 19.)', function () {
+            ['20 (pin 38, sağdan 19.)', function () {
               $scope.changeGPIO(20);
             }],
-            ['40 (sağdan 20.)', function () {
+            ['21 (pin 40, sağdan 20.)', function () {
               $scope.changeGPIO(21);
             }]
           ]]
