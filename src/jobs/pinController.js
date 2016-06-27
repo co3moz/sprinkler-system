@@ -1,10 +1,10 @@
 var gpio = null;
+const logger = require('gluon/logger');
 
 try {
   gpio = require('onoff').Gpio;
 } catch (e) {
   const config = require('config');
-  const logger = require('gluon/logger');
 
   try {
     if (config.get('ignorePins') != "true") throw Error();
@@ -18,7 +18,6 @@ try {
   }
 }
 
-const logger = require('gluon/logger');
 const Tap = require('../models/tap');
 const pins = {};
 
