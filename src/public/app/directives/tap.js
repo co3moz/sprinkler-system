@@ -162,31 +162,31 @@ app.directive("tapDirective", function () {
 
           }, [
             ['7 (soldan 4.)', function () {
-              $scope.changeGPIO(7);
+              $scope.changeGPIO(4);
             }],
             ['11 (soldan 6.)', function () {
-              $scope.changeGPIO(11);
+              $scope.changeGPIO(17);
             }],
             ['13 (soldan 7.)', function () {
-              $scope.changeGPIO(13);
+              $scope.changeGPIO(27);
             }],
             ['15 (soldan 8.)', function () {
-              $scope.changeGPIO(15);
+              $scope.changeGPIO(22);
             }],
             ['29 (soldan 15.)', function () {
-              $scope.changeGPIO(29);
+              $scope.changeGPIO(5);
             }],
             ['31 (soldan 16.)', function () {
-              $scope.changeGPIO(31);
+              $scope.changeGPIO(6);
             }],
             ['33 (soldan 17.)', function () {
-              $scope.changeGPIO(33);
+              $scope.changeGPIO(13);
             }],
             ['35 (soldan 18.)', function () {
-              $scope.changeGPIO(35);
+              $scope.changeGPIO(19);
             }],
             ['37 (soldan 19.)', function () {
-              $scope.changeGPIO(37);
+              $scope.changeGPIO(26);
             }]
           ]],
 
@@ -194,28 +194,28 @@ app.directive("tapDirective", function () {
 
           }, [
             ['12 (sağdan 6.)', function () {
-              $scope.changeGPIO(12);
-            }],
-            ['16 (sağdan 8.)', function () {
-              $scope.changeGPIO(16);
-            }],
-            ['18 (sağdan 9.)', function () {
               $scope.changeGPIO(18);
             }],
+            ['16 (sağdan 8.)', function () {
+              $scope.changeGPIO(23);
+            }],
+            ['18 (sağdan 9.)', function () {
+              $scope.changeGPIO(24);
+            }],
             ['22 (sağdan 11.)', function () {
-              $scope.changeGPIO(22);
+              $scope.changeGPIO(25);
             }],
             ['32 (sağdan 16.)', function () {
-              $scope.changeGPIO(32);
+              $scope.changeGPIO(12);
             }],
             ['36 (sağdan 18.)', function () {
-              $scope.changeGPIO(36);
+              $scope.changeGPIO(16);
             }],
             ['38 (sağdan 19.)', function () {
-              $scope.changeGPIO(38);
+              $scope.changeGPIO(20);
             }],
             ['40 (sağdan 20.)', function () {
-              $scope.changeGPIO(40);
+              $scope.changeGPIO(21);
             }]
           ]]
         ]]
