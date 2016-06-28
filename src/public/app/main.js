@@ -12,7 +12,7 @@ angular.module('app').controller('ApplicationController', ['$scope', '$window', 
 
   $scope.app = {
     name: 'Sprinkler System',
-    version: '1.1.0',
+    version: '1.1.1',
     device: device
   };
 
