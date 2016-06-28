@@ -3,8 +3,13 @@ app.controller('DashboardController', ['$scope', '$http', '$interval', '$rootSco
 
   $scope.taps = [];
 
+  $scope.completed = true;
   $scope.fetchTaps = function () {
+    if ($scope.completed == false) return;
+    $scope.completed = false;
     $http.get('/active').then(function (data) {
+      $scope.completed = true;
+
       $scope.active = data.data.active;
       $scope.paused = data.data.paused;
       $scope.start = new Date(data.data.start);
@@ -42,5 +47,5 @@ app.controller('DashboardController', ['$scope', '$http', '$interval', '$rootSco
     $interval.cancel($rootScope.dashboardFetchTaps);
     $rootScope.dashboardFetchTaps = null;
   }
-  $rootScope.dashboardFetchTaps = $interval($scope.fetchTaps, 6000);
+  $rootScope.dashboardFetchTaps = $interval($scope.fetchTaps, 1000);
 }]);
