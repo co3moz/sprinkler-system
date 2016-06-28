@@ -25,6 +25,6 @@
     "pinController": "*/5 * * * * *"
   },
   "logger": {
-    "level": "LOG"
+    "level": "DEBUG"
   }
 }
