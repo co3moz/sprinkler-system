@@ -14,23 +14,15 @@ app.directive("tapDirective", function () {
       };
 
       $scope.duration = function (duration) {
-        if (duration >= 60 * 60) {
-          return duration / (60 * 60) + " saat";
-        }
-
-        return duration / (60) + " dakika";
-      };
-
-      $scope.durationDate = function (duration) {
         if (duration < 60) {
           return parseInt(duration) + " saniye";
         }
 
         if (duration >= 60 * 60) {
-          return parseInt(duration / (3600)) + " saat";
+          return parseInt(duration / (3600)) + " saat" + ((parseInt((duration % 3600) / 60) != 0) ? (' ' + parseInt((duration % 3600) / 60) + ' dakika') : '');
         }
 
-        return parseInt(duration / (60)) + " dakika";
+        return parseInt(duration / (60)) + " dakika" + ((parseInt(duration % 60) != 0) ? (' ' + parseInt(duration % 60) + ' saniye') : '');
       };
 
       $scope.changeDuration = function (duration) {
@@ -128,31 +120,31 @@ app.directive("tapDirective", function () {
 
         }, [
           ['5 dakika', function () {
-            $scope.changeDuration(60);
-          }],
-          ['10 dakika', function () {
-            $scope.changeDuration(2 * 60);
-          }],
-          ['15 dakika', function () {
-            $scope.changeDuration(3 * 60);
-          }],
-          ['20 dakika', function () {
-            $scope.changeDuration(4 * 60);
-          }],
-          ['25 dakika', function () {
             $scope.changeDuration(5 * 60);
           }],
-          ['30 dakika', function () {
-            $scope.changeDuration(6 * 60);
-          }],
-          ['40 dakika', function () {
-            $scope.changeDuration(8 * 60);
-          }],
-          ['50 dakika', function () {
+          ['10 dakika', function () {
             $scope.changeDuration(10 * 60);
           }],
+          ['15 dakika', function () {
+            $scope.changeDuration(15 * 60);
+          }],
+          ['20 dakika', function () {
+            $scope.changeDuration(20 * 60);
+          }],
+          ['25 dakika', function () {
+            $scope.changeDuration(25 * 60);
+          }],
+          ['30 dakika', function () {
+            $scope.changeDuration(30 * 60);
+          }],
+          ['40 dakika', function () {
+            $scope.changeDuration(40 * 60);
+          }],
+          ['50 dakika', function () {
+            $scope.changeDuration(50 * 60);
+          }],
           ['1 saat', function () {
-            $scope.changeDuration(12 * 60);
+            $scope.changeDuration(60 * 60);
           }]
         ]],
         ['GPIO değiştir', function () {
