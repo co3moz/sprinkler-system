@@ -1,7 +1,7 @@
-app.controller('LoginController', ['$scope', '$http', '$timeout', '$cookies', '$location', '$rootScope', function ($scope, $http, $timeout, $cookies, $location, $rootScope) {
+app.controller('LoginController', ['$scope', '$http', '$timeout', '$localStorage', '$location', '$rootScope', function ($scope, $http, $timeout, $localStorage, $location, $rootScope) {
   console.log("Login Controller worked.");
 
-  if ($cookies.get('token')) {
+  if ($localStorage.token) {
     $location.url('/app/dashboard');
     $rootScope.logined = true;
     return;
@@ -21,7 +21,7 @@ app.controller('LoginController', ['$scope', '$http', '$timeout', '$cookies', '$
         $scope.loginClass = "loading ok";
         $scope.message = "Giriş yapıldı!. Yönlendiriliyorsunuz..";
 
-        $cookies.put('token', data.data.code);
+        $localStorage.token = data.data.code;
         $timeout(function () {
           $rootScope.logined = true;
           var search = $location.search().url;

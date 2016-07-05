@@ -3,6 +3,7 @@ const router = gluon.router();
 
 const Tap = require('../../../models/tap');
 const Setting = require('../../../models/setting');
+const Event = require('../../../models/event');
 
 router.post('/', (req, res, next) => {
   Setting.find({
@@ -33,8 +34,10 @@ router.post('/', (req, res, next) => {
 
     if (tap.status == 'SILENT') {
       tap.status = 'STANDBY';
+      Event.log('tap', tap.name + ' alanı sulanacak işaretlendi');
     } else if (tap.status == 'STANDBY') {
       tap.status = 'SILENT';
+      Event.log('tap', tap.name + ' alanı sulanmayacak işaretlendi');
     }
 
     tap.save().then((tap) => res.ok(tap)).catch(res.database);

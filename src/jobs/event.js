@@ -1,7 +1,6 @@
-const schedule = require('node-schedule');
-const config = require('config');
+const mainTimer = require('./mainTimer');
+const pinController = require('./pinController');
 
-schedule.scheduleJob(config.get('jobs.mainTimer'), () => {
-  require('./mainTimer')();
-  require('./pinController')();
-});
+setInterval(() => {
+  mainTimer(pinController);
+}, 1000);

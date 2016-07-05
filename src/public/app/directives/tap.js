@@ -7,8 +7,12 @@ app.directive("tapDirective", function () {
       isActive: '=isActive'
     },
     controller: ['$scope', '$http', 'sweet', function ($scope, $http, sweet) {
+      $scope.loading = false;
       $scope.tapClick = function (tap) {
+        if ($scope.loading == true) return;
+        $scope.loading = true;
         $http.post('/tap/' + tap.id + '/click').then(function (data) {
+          $scope.loading = false;
           $scope.tap = data.data;
         });
       };
@@ -26,24 +30,29 @@ app.directive("tapDirective", function () {
       };
 
       $scope.changeDuration = function (duration) {
+        $scope.loading = true;
         $http.post('/tap/' + $scope.tap.id + '/duration/' + duration).then(function (data) {
+          $scope.loading = false;
           $scope.tap = data.data;
         });
       };
 
       $scope.changeGPIO = function (gpio) {
+        $scope.loading = true;
         $http.post('/tap/' + $scope.tap.id + '/gpio/' + gpio).then(function (data) {
+          $scope.loading = false;
           $scope.tap = data.data;
         });
       };
       $scope.changeLine = function (line) {
+        $scope.loading = true;
         $http.post('/tap/' + $scope.tap.id + '/line/' + line).then(function (data) {
+          $scope.loading = false;
           $scope.tap = data.data;
         });
       };
 
       $scope.menuOptions = [
-
         ['Yeniden adlandır', function () {
           sweet.show({
             title: 'Yeniden Adlandır',
@@ -60,9 +69,13 @@ app.directive("tapDirective", function () {
               sweet.showInputError('Bir isim vermeniz gerekmektedir!');
               return false;
             }
+
+            $scope.loading = true;
             $http.post('/tap/' + $scope.tap.id + '/rename/' + inputValue).then(function (data) {
               $scope.tap = data.data;
+              $scope.loading = false;
             });
+
             sweet.show({
               title: 'Değişim tamamlandı',
               text: 'Güncelleniyor...',
@@ -71,7 +84,9 @@ app.directive("tapDirective", function () {
             });
           });
         }], ['Kilitle / Kilidi aç', function () {
+          $scope.loading = true;
           $http.post('/tap/' + $scope.tap.id + '/lock').then(function (data) {
+            $scope.loading = false;
             $scope.tap = data.data;
           });
         }],
@@ -119,6 +134,9 @@ app.directive("tapDirective", function () {
         ['Süreyi değiştir', function () {
 
         }, [
+          ['1 dakika', function () {
+            $scope.changeDuration(60);
+          }],
           ['5 dakika', function () {
             $scope.changeDuration(5 * 60);
           }],

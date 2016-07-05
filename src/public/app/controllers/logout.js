@@ -1,7 +1,7 @@
-app.controller('LogoutController', ['$scope', '$http', '$timeout', '$cookies', '$location', '$rootScope', function ($scope, $http, $timeout, $cookies, $location, $rootScope) {
+app.controller('LogoutController', ['$scope', '$http', '$timeout', '$localStorage', '$location', '$rootScope', function ($scope, $http, $timeout, $localStorage, $location, $rootScope) {
   console.log("Logout Controller worked.");
 
-  if (!$cookies.get('token')) {
+  if (!$localStorage.token) {
     $location.url('/app/login');
     $rootScope.logined = false;
     return;
@@ -9,7 +9,7 @@ app.controller('LogoutController', ['$scope', '$http', '$timeout', '$cookies', '
 
   $http.post('/logout');
   $timeout(function () {
-    $cookies.put('token', '');
+    $localStorage.token = '';
 
     $location.url('/app/login');
     $rootScope.logined = false;

@@ -1,7 +1,12 @@
 <div class="box" ng-class="tap.status" ng-click="tapClick(tap)" context-menu="menuOptions">
-    {{tap.name}}<br>
-    #{{tap.line}}<br>
-    <span ng-if="tap.status != 'OPERATIVE'">{{duration(tap.duration )}}</span>
-    <span ng-if="tap.status == 'OPERATIVE'">{{duration(tap.cycle)}} (%{{((tap.duration - tap.cycle) / tap.duration * 100).toFixed(0)}})</span><br>
-    GPIO {{tap.gpio}}
+    <div ng-if="!loading">
+        {{tap.name}}<br>
+        #{{tap.line}}<br>
+        <span ng-if="tap.status != 'OPERATIVE'">{{duration(tap.duration )}}</span>
+        <span ng-if="tap.status == 'OPERATIVE'"><span time="{{tap.cycle}}" data-just-duration="true"></span> (%{{((tap.duration - tap.cycle) / tap.duration * 100).toFixed(0)}})</span><br>
+        GPIO {{tap.gpio}}
+    </div>
+    <div ng-if="loading">
+        <i class="fa fa-spinner fa-spin loadingSpan"></i>
+    </div>
 </div>

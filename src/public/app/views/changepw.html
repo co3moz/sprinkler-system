@@ -1,0 +1,40 @@
+<div class="container" ng-controller="ChangePasswordController">
+    <form ng-submit="degistir()" name="sifreDegistir">
+        <div class="form-group"
+             ng-class="{ 'has-error': sifreDegistir.eskiSifre.$touched && sifreDegistir.eskiSifre.$invalid }">
+            <label class="control-label" for="eskiSifre">Eski şifre</label>
+            <input type="password" class="form-control" id="eskiSifre" name="eskiSifre" ng-model="eskiSifre" required>
+
+            <div class="help-block" ng-messages="sifreDegistir.eskiSifre.$error"
+                 ng-if="sifreDegistir.eskiSifre.$touched">
+                <p ng-message="required">Boş bırakılamaz.</p>
+            </div>
+        </div>
+
+        <div class="form-group"
+             ng-class="{ 'has-error': sifreDegistir.yeniSifre.$touched && sifreDegistir.yeniSifre.$invalid }">
+            <label class="control-label" for="yeniSifre">Yeni şifre</label>
+            <input type="password" class="form-control" id="yeniSifre" name="yeniSifre" ng-model="yeniSifre" required>
+
+            <div class="help-block" ng-messages="sifreDegistir.yeniSifre.$error"
+                 ng-if="sifreDegistir.yeniSifre.$touched">
+                <p ng-message="required">Boş bırakılamaz.</p>
+            </div>
+        </div>
+
+        <div class="form-group"
+             ng-class="{ 'has-error': sifreDegistir.yeniSifre2.$touched && sifreDegistir.yeniSifre2.$invalid }">
+            <label class="control-label" for="yeniSifre2">Tekrar yeni şifre</label>
+            <input type="password" class="form-control" id="yeniSifre2" name="yeniSifre2" ng-model="yeniSifre2" ng-pattern="{{yeniSifre}}" required>
+
+            <div class="help-block" ng-messages="sifreDegistir.yeniSifre2.$error"
+                 ng-if="sifreDegistir.yeniSifre2.$touched">
+                <p ng-message="required">Boş bırakılamaz.</p>
+                <p ng-message="pattern">Yeni şifre ile aynı olmalıdır.</p>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-default">Değiştir</button>
+
+    </form>
+</div>

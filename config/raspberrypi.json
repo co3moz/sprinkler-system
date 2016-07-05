@@ -20,10 +20,6 @@
     "database": "sprinkler",
     "timezone": "+03:00"
   },
-  "jobs": {
-    "mainTimer": "*/1 * * * * *",
-    "pinController": "*/1 * * * * *"
-  },
   "logger": {
     "level": "DEBUG"
   }
