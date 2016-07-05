@@ -1,27 +1,36 @@
 <!-- Header -->
 <div id="header" ng-controller="HeaderController" style="background-position: 50% 0%; height:100%;"
-     data-stellar-background-ratio="0.5">
+     data-stellar-background-ratio="0.5" ng-init="navbarCollapsed = true">
     <nav class="navbar navbar-inverse navbar-sprinkler">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <button type="button" class="navbar-toggle collapsed" ng-click="navbarCollapsed = !navbarCollapsed">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"> Sprinkler System</a>
+                <a class="navbar-brand" href="#"> Sprinkler</a>
                 <a class="navbar-brand" href="#">
                     <img src="images/sprinkler.png" style="width: 30px;">
                 </a>
             </div>
 
-
-            <div class="collapse navbar-collapse navbar-right" ng-if="logined">
+            <div class="collapse navbar-collapse navbar-left" ng-if="logined" uib-collapse="navbarCollapsed">
                 <ul class="nav navbar-nav">
+                    <li><a ng-click="emergency()" class="pointer">Sistemi sıfırla</a></li>
+                </ul>
+            </div>
+
+            <div class="collapse navbar-collapse navbar-right" ng-if="logined" uib-collapse="navbarCollapsed">
+                <ul class="nav navbar-nav">
+                    <li ng-class="{'active': isActive('/app/dashboard')}"><a ng-href="#/app/dashboard">Panel</a>
+                    <li ng-class="{'active': isActive('/app/events')}"><a ng-href="#/app/events">Kayıt izlem</a>
+                    <li ng-class="{'active': isActive('/app/changepw')}"><a ng-href="#/app/changepw">Şifre değiştir</a>
+                    </li>
                     <li><a ng-href="#/app/logout">Çıkış</a></li>
+                    <li><a class="pointer">{{profile.account}}</a></li>
                 </ul>
             </div>
         </div>

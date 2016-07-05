@@ -39,6 +39,8 @@
     "angular-moment": "^0.10.3",
     "angular-bootstrap-contextmenu": "^0.9.7",
     "angular-sweetalert": "angular-h-sweetalert#^1.4.7",
-    "angular-cookies": "^1.5.7"
+    "angular-cookies": "^1.5.7",
+    "angular-http-etag": "^1.1.3",
+    "ngstorage": "^0.3.10"
   }
 }

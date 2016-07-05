@@ -1,7 +1,8 @@
 const gluon = require('gluon');
 const router = gluon.router();
 
-const Setting = require('../models/setting');
+const Setting = require('../../models/setting');
+const Event = require('../../models/event');
 
 router.get('/', (req, res) => {
   Setting.find({
@@ -11,6 +12,11 @@ router.get('/', (req, res) => {
   }).then((data) => {
     var previous = data.value;
     data.value = "1";
+    if (previous == "0") {
+      Event.log('control', 'Sistem manuel olarak başlatıldı');
+    } else if (previous == "2") {
+      Event.log('control', 'Sistem manuel olarak bekletmenden çıkarıldı');
+    }
 
     Setting.find({
       where: {

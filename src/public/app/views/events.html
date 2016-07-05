@@ -1,0 +1,32 @@
+<div class="container" ng-controller="EventController">
+    <table class="table">
+        <thead>
+        <th style="width: 10%">ID</th>
+        <th style="width: 20%">Tarih</th>
+        <th style="width: 60%">Mesaj</th>
+        <th style="width: 10%">Konum</th>
+        </thead>
+        <tbody>
+        <tr ng-repeat="event in events">
+            <td>#{{event.id}}</td>
+            <td time="{{event.createdAt}}" data-suffix="true"></td>
+            <td>{{event.message}}</td>
+            <td>{{event.position}}</td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <span style="float: left">Gösterilen {{page * 10 + 1}} - {{endingRow}}</span>
+                <span style="float: right">
+                    <ul class="pagination">
+                        <li ng-repeat="n in pagination(page, totalRows)" ng-click="changePage(n)"
+                            ng-class="{active: n == page + 1}">
+                            <a ng-if="n != '...'" ng-href="#/app/events?page={{n - 1}}">{{n}}</a>
+                            <a ng-if="n == '...'">{{n}}</a>
+                        </li>
+                    </ul>
+                </span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

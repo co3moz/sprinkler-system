@@ -1,13 +1,15 @@
 const Tap = require('../models/tap');
 const Setting = require('../models/setting');
+const Event = require('../models/event');
 
-module.exports = () => {
+module.exports = (done) => {
   Setting.find({
     where: {
       param: 'active'
     }
   }).then((active) => {
     if (active.value != '1') {
+      done();
       return;
     }
 
@@ -24,14 +26,12 @@ module.exports = () => {
           order: ['line', 'id']
         }).then((tap) => {
           if (tap == null) {
-            Tap.update({status: 'STANDBY', cycle: null}, {
-              where: {
-                status: 'DONE'
-              }
+            active.value = '2';
+            active.save().then(() => {
+              done()
             });
 
-            active.value = '0';
-            active.save();
+            Event.log('sprinkling', 'Sulama tamamlandı, otomatik olarak bekleme moduna alındı.');
             return;
           }
 
@@ -39,17 +39,24 @@ module.exports = () => {
           if (tap.cycle == null) {
             tap.cycle = tap.duration;
           }
-          tap.save();
+
+          Event.log('sprinkling', tap.name + ' alanı sulanmaya başlandı.');
+          tap.save().then(() => {
+            done()
+          });
         });
         return;
       }
 
-      if (--tap.cycle < 1) {
+      if (--tap.cycle <= 0) {
         tap.cycle = null;
         tap.status = 'DONE';
+        Event.log('sprinkling', tap.name + ' alanının sulaması tamamlandı.');
       }
 
-      tap.save();
+      tap.save().then(() => {
+        done()
+      });
     });
   })
 };

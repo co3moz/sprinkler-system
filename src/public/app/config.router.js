@@ -20,6 +20,14 @@ angular.module('app').run(['$rootScope', '$state', '$stateParams', '$location', 
     url: '/logout',
     templateUrl: 'app/views/logout.html',
     resolve: load(['app/controllers/logout.js'])
+  }).state('app.changepw', {
+    url: '/changepw',
+    templateUrl: 'app/views/changepw.html',
+    resolve: load(['app/controllers/changepw.js'])
+  }).state('app.events', {
+    url: '/events',
+    templateUrl: 'app/views/events.html',
+    resolve: load(['app/controllers/events.js'])
   });
 
   function load (srcs, callback) {

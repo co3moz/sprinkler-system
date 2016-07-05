@@ -1,51 +1,83 @@
-app.controller('DashboardController', ['$scope', '$http', '$interval', '$rootScope', function ($scope, $http, $interval, $rootScope) {
+app.controller('DashboardController', ['$scope', '$http', '$interval', '$location', 'sweet', function ($scope, $http, $interval, $location, sweet) {
   console.log("Dashboard Controller worked.");
 
   $scope.taps = [];
+  var completed = true;
+  var fetchInterval;
 
-  $scope.completed = true;
   $scope.fetchTaps = function () {
-    if ($scope.completed == false) return;
-    $scope.completed = false;
-    $http.get('/active').then(function (data) {
-      $scope.completed = true;
+    if (completed == false) return;
 
-      $scope.active = data.data.active;
-      $scope.paused = data.data.paused;
-      $scope.start = new Date(data.data.start);
+    if ($location.path() != '/app/dashboard') {
+      $interval.cancel(fetchInterval);
+    }
+    completed = false;
+    $http.get('/fetch/merged', {
+      etag: true,
+      headers: {
+        'Cache-Control': 'max-age=0'
+      }
+    }).cache((data) => {
+      completed = true;
+
+      $scope.active = data.status.active;
+      $scope.paused = data.status.paused;
+      $scope.start = new Date(data.status.start);
       $scope.startDate = $scope.start.toLocaleString();
-      $scope.startFromNow = moment(data.data.start).fromNow();
-    });
+      $scope.startFromNow = moment(data.status.start).fromNow();
+      $scope.taps = data.taps;
+      $scope.events = data.events;
+    }).then(function (data) {
+      completed = true;
 
-    $http.get('/taps').then(function (data) {
-      $scope.taps = data.data;
+      $scope.active = data.data.status.active;
+      $scope.paused = data.data.status.paused;
+      $scope.start = new Date(data.data.status.start);
+      $scope.startDate = $scope.start.toLocaleString();
+      $scope.startFromNow = moment(data.data.status.start).fromNow();
+      $scope.taps = data.data.taps;
+      $scope.events = data.data.events;
     });
-    console.log('Fetching taps');
   };
 
+
+  fetchInterval = $interval($scope.fetchTaps, 3000);
+
   $scope.startSprinkler = function () {
-    $http.get('/start').then(function () {
-      $scope.fetchTaps();
+    sweet.show({
+      title: 'Emin misiniz?',
+      text: 'Sistem seçmiş olduğunuz alanları sulamaya başlayacak.',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: "green",
+      confirmButtonText: "Evet, başlat!",
+      cancelButtonText: "Hayır, başlatma!",
+      closeOnConfirm: false,
+      closeOnCancel: true
+    }, function () {
+      $http.get('/control/start').then(function () {
+        sweet.show({
+          type: 'success',
+          title: 'Başlatılıyor..',
+          timer: 500,
+          showConfirmButton: false
+        });
+        $scope.fetchTaps();
+      });
     });
   };
 
   $scope.waitSprinkler = function () {
-    $http.get('/pause').then(function () {
+    $http.get('/control/pause').then(function () {
       $scope.fetchTaps();
     });
   };
 
   $scope.stopSprinkler = function () {
-    $http.get('/stop').then(function () {
+    $http.get('/control/stop').then(function () {
       $scope.fetchTaps();
     });
   };
 
   $scope.fetchTaps();
-
-  if ($rootScope.dashboardFetchTaps) {
-    $interval.cancel($rootScope.dashboardFetchTaps);
-    $rootScope.dashboardFetchTaps = null;
-  }
-  $rootScope.dashboardFetchTaps = $interval($scope.fetchTaps, 1000);
 }]);

@@ -1,7 +1,7 @@
 const gluon = require('gluon');
 const router = gluon.router();
 
-const Setting = require('../models/setting');
+const Setting = require('../../models/setting');
 
 router.get('/', (req, res) => {
   Setting.find({

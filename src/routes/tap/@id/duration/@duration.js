@@ -3,6 +3,7 @@ const router = gluon.router();
 
 const Tap = require('../../../../models/tap');
 const Setting = require('../../../../models/setting');
+const Event = require('../../../../models/event');
 
 router.post('/', (req, res, next) => {
   Setting.find({
@@ -31,6 +32,7 @@ router.post('/', (req, res, next) => {
   }).then((tap) => {
     if (tap == null) return res.notFound('this tap is not exists');
 
+    Event.log('tap', tap.name + ' alanının sulanma süresi ' + req.params.duration + ' saniye olarak değiştirildi');
     tap.duration = req.params.duration;
     tap.save().then((tap) => res.ok(tap)).catch(res.database);
   }).catch(res.database);
