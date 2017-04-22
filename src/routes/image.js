@@ -24,7 +24,7 @@ router.get('/', (req, res) => {
       return;
     }
 
-    res.send('test2.png');
+    res.sendFile(loc);
   });
 });
 
