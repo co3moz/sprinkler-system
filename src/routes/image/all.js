@@ -22,7 +22,7 @@ function provideImages(fn) {
 }
 
 router.get('/', (req, res) => {
-    provideImages(res, (err, images) => {
+    provideImages((err, images) => {
         if (err) return res.unknown(err);
         res.ok(images);
     });
