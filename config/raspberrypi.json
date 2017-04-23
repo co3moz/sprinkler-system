@@ -5,7 +5,6 @@
     "auth": {
       "base": "token",
       "allow": [
-        "/image"
       ]
     },
     "publicSource": [
@@ -22,6 +21,12 @@
     "timezone": "+03:00"
   },
   "logger": {
+<<<<<<< HEAD
     "level": "DEBUG"
   }
+=======
+    "level": "LOG"
+  },
+  "imageDirectory": "/home/pi/Desktop/resimler"
+>>>>>>> 5238922a150f18ea479c4d724805e42d9b023845
 }
