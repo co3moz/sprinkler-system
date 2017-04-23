@@ -24,5 +24,6 @@
   "ignorePins": "true",
   "logger": {
     "level": "LOG"
-  }
+  },
+  "imageDirectory": "/home/pi/Desktop/resimler"
 }

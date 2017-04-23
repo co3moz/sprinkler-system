@@ -5,7 +5,6 @@
     "auth": {
       "base": "token",
       "allow": [
-        "/image"
       ]
     },
     "publicSource": [
@@ -23,5 +22,6 @@
   },
   "logger": {
     "level": "LOG"
-  }
+  },
+  "imageDirectory": "/home/pi/Desktop/resimler"
 }
