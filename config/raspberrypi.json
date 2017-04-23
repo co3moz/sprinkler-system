@@ -5,6 +5,8 @@
     "auth": {
       "base": "token",
       "allow": [
+        "/image/all",
+        "/image/:image"
       ]
     },
     "publicSource": [
