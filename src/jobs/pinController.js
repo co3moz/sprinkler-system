@@ -31,16 +31,16 @@ module.exports = () => {
   }).then((taps) => {
     taps.forEach((tap) => {
       if (!pins[tap.gpio]) {
-        logger.debug('pin {0} opened', tap.gpio);
+        logger.log('pin {0} opened', tap.gpio);
         pins[tap.gpio] = new gpio(tap.gpio, 'out');
       }
 
       if (tap.status == 'OPERATIVE') {
         pins[tap.gpio].writeSync(1);
-        logger.debug('pin {0} setted to {1}', tap.gpio, 1);
+        logger.log('pin {0} setted to {1}', tap.gpio, 1);
       } else {
         pins[tap.gpio].writeSync(0);
-        logger.debug('pin {0} setted to {1}', tap.gpio, 0);
+        logger.log('pin {0} setted to {1}', tap.gpio, 0);
       }
     });
   });
