@@ -1,19 +1,4 @@
 {
-  "gluon": {
-    "listen": 7070,
-    "dir": "./src",
-    "auth": {
-      "base": "token",
-      "allow": [
-        "/image/all",
-        "/image/:image"
-      ]
-    },
-    "publicSource": [
-      "./public/build",
-      "./public"
-    ]
-  },
   "database": {
     "dialect": "mysql",
     "host": "localhost",
@@ -22,8 +7,9 @@
     "database": "sprinkler",
     "timezone": "+03:00"
   },
+  "ignorePins": "true",
   "logger": {
-    "level": "DEBUG"
+    "level": "LOG"
   },
   "imageDirectory": "/home/pi/Desktop/resimler"
 }
