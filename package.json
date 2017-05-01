@@ -16,6 +16,7 @@
     "js-md5": "^0.4.1",
     "mysql": "^2.11.1",
     "node-schedule": "1.1.1",
+    "onoff": "^1.1.2",
     "sequelize": "^3.23.3"
   },
   "devDependencies": {
