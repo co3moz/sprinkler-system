@@ -9,7 +9,7 @@ try {
   try {
     if (config.get('ignorePins') != "true") throw Error();
     module.exports = () => {
-      logger.debug('GPIO pin changes are ignored!')
+      logger.log('GPIO pin changes are ignored!')
     };
     return;
   } catch (e) {
