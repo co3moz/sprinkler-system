@@ -23,7 +23,7 @@
     "timezone": "+03:00"
   },
   "logger": {
-    "level": "LOG"
+    "level": "DEBUG"
   },
   "imageDirectory": "/home/pi/Desktop/resimler"
 }
