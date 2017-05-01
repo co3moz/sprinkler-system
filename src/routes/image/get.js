@@ -5,8 +5,8 @@ const router = gluon.router();
 
 const imageDirectory = config.get('imageDirectory');
 
-router.get('/:image', (req, res) => {
-    res.sendFile(path.resolve(imageDirectory, req.params.image));
+router.get('/:date/:image', (req, res) => {
+    res.sendFile(path.resolve(imageDirectory, req.params.date + '/', req.params.image + '.jpg'));
 });
 
 module.exports = router;
