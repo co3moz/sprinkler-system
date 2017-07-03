@@ -50,7 +50,10 @@ module.exports = (done) => {
             Event.log('sprinkling', 'Sulama tamamlandı, otomatik olarak bekleme moduna alındı.');
 
             socketController.PrintText('Tüm alanlar sulandi. ');
-            socketController.IRControl('R');
+            setTimeout(function () {
+              socketController.IRControl('R');
+            }, 250);
+
             return;
           }
 
