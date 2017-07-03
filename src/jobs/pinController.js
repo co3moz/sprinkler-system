@@ -48,10 +48,15 @@ module.exports = () => {
   });
 };
 
-process.on('exit', (code) => {
+
+const socketController = require('./socketController');
+
+process.once('beforeExit', (code) => {
   Object.keys(pins).forEach((pin) => {
     logger.debug('pin {0} closed', pin);
     pins[pin].writeSync(0);
     pins[pin].unexport();
-  })
+  });
+
+  socketController.IROff();
 });
