@@ -1,22 +1,22 @@
 const config = require('config');
 const socket = require('socket.io-client')(config.get('socket'));
 
-exports.IRControl = function (data) {
+exports.IRControl = function IRControl(data) {
     socket.emit('show', '#i' + data);
 }
 
 var irStatus = false;
 
 exports.IROn = function () {
-    console.log('socketController.IROn');
     if (irStatus == true) return;
+    console.log('socketController.IROn');
     exports.IRControl('O');
     irStatus = true;
 }
 
 exports.IROff = function () {
-    console.log('socketController.IROff');
     if (irStatus == false) return;
+    console.log('socketController.IROff');
 
     exports.IRControl('F');
     irStatus = false;
