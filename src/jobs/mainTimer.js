@@ -51,8 +51,8 @@ module.exports = (done) => {
 
             socketController.PrintText('Tüm alanlar sulandi. ');
             setTimeout(function () {
-              socketController.IRControl('R');
-            }, 250);
+              socketController.IRControl('6');
+            }, 125);
 
             return;
           }
