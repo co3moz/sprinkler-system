@@ -5,22 +5,22 @@ exports.IRControl = function IRControl(data) {
     socket.emit('show', '#i' + data);
 }
 
-var irStatus = null;
+var irStatus = -1;
 
 exports.IROn = function () {
-    if (irStatus == true) return false;;
+    if (irStatus == 1) return false;
     console.log('socketController.IROn');
     exports.IRControl('O');
-    irStatus = true;
+    irStatus = 1;
     return true;
 }
 
 exports.IROff = function () {
-    if (irStatus == false) return false;
+    if (irStatus == 0) return false;
     console.log('socketController.IROff');
 
     exports.IRControl('F');
-    irStatus = false;
+    irStatus = 1;
 
     return true;
 }
