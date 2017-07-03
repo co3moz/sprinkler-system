@@ -33,6 +33,7 @@ exports.NightMode = function () {
     if ((hour >= 20 && hour <= 23)  || (hour == 0)) { // 20-01 arası
         if (exports.IROn()) {
             exports.HappyFace();
+            exports.IRControl('R');
         }
     } else {
         if (exports.IROff()) {
