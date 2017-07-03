@@ -30,7 +30,7 @@ exports.HappyFace = function () {
 exports.NightMode = function () {
     let hour = new Date().getHours();
 
-    if ((hour >= 20 && hour <= 23)  || (hour == 1)) { // 20-01 arası
+    if ((hour >= 20 && hour <= 23)  || (hour == 0)) { // 20-01 arası
         if (exports.IROn()) {
             exports.HappyFace();
         }
