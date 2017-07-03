@@ -35,7 +35,7 @@ exports.NightMode = function () {
     let hour = new Date().getHours();
     let minutes = new Date().getMinutes();
 
-    if ((hour >= 20 && hour <= 23) || (hour == 1 && minutes < 5)) { // 20-00
+    if ((hour >= 20 && hour <= 23) || (hour == 1 && minutes < 35)) { // 20-00
         if (exports.IROn()) {
             exports.HappyFace();
             setTimeout(function () {
