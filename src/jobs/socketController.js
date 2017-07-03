@@ -34,11 +34,10 @@ exports.HappyFace = function () {
 }
 
 exports.NightMode = function () {
-    console.log('socketController.NightMode');
     let hour = new Date().getHours();
     let minutes = new Date().getMinutes();
 
-    if ((hour >= 20 && hour <= 23) || (hour == 1 && minutes < 37)) { // 20-00
+    if ((hour >= 20 && hour <= 23) || (hour == 0 && minutes < 30)) { // 20-00
         if (exports.IROn()) {
             exports.HappyFace();
             setTimeout(function () {
