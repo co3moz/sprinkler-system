@@ -20,7 +20,7 @@ exports.IROff = function () {
     console.log('socketController.IROff');
 
     exports.IRControl('F');
-    irStatus = 1;
+    irStatus = 0;
 
     return true;
 }
