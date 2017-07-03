@@ -8,12 +8,14 @@ exports.IRControl = function (data) {
 var irStatus = false;
 
 exports.IROn = function () {
+    console.log('socketController.IROn');
     if (irStatus == true) return;
     exports.IRControl('O');
     irStatus = true;
 }
 
 exports.IROff = function () {
+    console.log('socketController.IROff');
     if (irStatus == false) return;
 
     exports.IRControl('F');
@@ -21,10 +23,12 @@ exports.IROff = function () {
 }
 
 exports.HappyFace = function () {
+    console.log('socketController.HappyFace');
     socket.emit('show_array', [35, 115, 51, 115, 96, 96, 96, 96, 115, 51]);
 }
 
 exports.NightMode = function () {
+    console.log('socketController.NightMode');
     let hour = new Date().getHours();
 
     if (hour >= 20 && hour <= 23) {
@@ -37,6 +41,7 @@ exports.NightMode = function () {
 }
 
 exports.PrintText = function (data) {
+    console.log('socketController.PrintText(%s)', data);
     socket.emit('show', data.replace(/[ıİğĞüÜöÖçÇ]/g, function (c) {
         switch (c) {
             case "ı": return 'i';
@@ -54,6 +59,7 @@ exports.PrintText = function (data) {
 }
 
 exports.PrintChar = function (data) {
+    console.log('socketController.PrintChar(%s)', data);
     socket.emit('show', '&' + data.charAt(0).replace(/[ıİğĞüÜöÖçÇ]/g, function (c) {
         switch (c) {
             case "ı": return 'i';
