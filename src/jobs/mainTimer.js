@@ -16,10 +16,18 @@ module.exports = (done) => {
     }
   }).then((active) => {
     if (active.value != '1') {
-      socketController.NightMode();
+      if (active.value == '2') {
+        setTimeout(function () {
+          socketController.NightMode();
+        }, 2000);
+      } else {
+        socketController.NightMode();
+      }
       done();
       return;
     }
+
+    socketController.IROn();
 
     Tap.find({
       where: {
@@ -42,6 +50,7 @@ module.exports = (done) => {
             Event.log('sprinkling', 'Sulama tamamlandı, otomatik olarak bekleme moduna alındı.');
 
             socketController.PrintText('Tüm alanlar sulandi. ');
+            socketController.IRControl('R');
             return;
           }
 
@@ -52,6 +61,7 @@ module.exports = (done) => {
 
           Event.log('sprinkling', tap.name + ' alanı sulanmaya başlandı.');
           socketController.PrintText(tap.name + ' sulanıyor. ');
+          socketController.IRControl('W');
           tap.save().then(() => {
             done()
           });
@@ -64,6 +74,7 @@ module.exports = (done) => {
         tap.status = 'DONE';
         Event.log('sprinkling', tap.name + ' alanının sulaması tamamlandı.');
         socketController.PrintText(tap.name + ' sulandı ');
+        socketController.IRControl('8');
       }
 
       tap.save().then(() => {
