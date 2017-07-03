@@ -8,18 +8,21 @@ exports.IRControl = function IRControl(data) {
 var irStatus = null;
 
 exports.IROn = function () {
-    if (irStatus == true) return;
+    if (irStatus == true) return false;;
     console.log('socketController.IROn');
     exports.IRControl('O');
     irStatus = true;
+    return true;
 }
 
 exports.IROff = function () {
-    if (irStatus == false) return;
+    if (irStatus == false) return false;
     console.log('socketController.IROff');
 
     exports.IRControl('F');
     irStatus = false;
+
+    return true;
 }
 
 exports.HappyFace = function () {
@@ -32,11 +35,13 @@ exports.NightMode = function () {
     let hour = new Date().getHours();
 
     if (hour >= 20 && hour <= 23) {
-        exports.IROn();
-        exports.HappyFace();
+        if (exports.IROn()) {
+            exports.HappyFace();
+        }
     } else {
-        exports.IROff();
-        exports.PrintText(' ');
+        if (exports.IROff()) {
+            exports.PrintText(' ');
+        }
     }
 }
 
