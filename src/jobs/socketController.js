@@ -8,8 +8,7 @@ exports.IRControl = function IRControl(data) {
 var irStatus = null;
 
 exports.IROn = function () {
-    if (irStatus == true) return false;;
-    console.log('socketController.IROn');
+    if (irStatus == true) return false;
     exports.IRControl('O');
     irStatus = true;
     return true;
@@ -17,7 +16,6 @@ exports.IROn = function () {
 
 exports.IROff = function () {
     if (irStatus == false) return false;
-    console.log('socketController.IROff');
 
     exports.IRControl('F');
     irStatus = false;
@@ -26,15 +24,13 @@ exports.IROff = function () {
 }
 
 exports.HappyFace = function () {
-    console.log('socketController.HappyFace');
     socket.emit('show_array', [35, 115, 51, 115, 96, 96, 96, 96, 115, 51]);
 }
 
 exports.NightMode = function () {
-    console.log('socketController.NightMode');
     let hour = new Date().getHours();
 
-    if (hour >= 20 && hour <= 23) {
+    if ((hour >= 20 && hour <= 23)  || (hour == 1)) { // 20-01 arası
         if (exports.IROn()) {
             exports.HappyFace();
         }
@@ -46,7 +42,6 @@ exports.NightMode = function () {
 }
 
 exports.PrintText = function (data) {
-    console.log('socketController.PrintText(%s)', data);
     socket.emit('show', data.replace(/[ıİğĞüÜöÖçÇ]/g, function (c) {
         switch (c) {
             case "ı": return 'i';
@@ -64,7 +59,6 @@ exports.PrintText = function (data) {
 }
 
 exports.PrintChar = function (data) {
-    console.log('socketController.PrintChar(%s)', data);
     socket.emit('show', '&' + data.charAt(0).replace(/[ıİğĞüÜöÖçÇ]/g, function (c) {
         switch (c) {
             case "ı": return 'i';
