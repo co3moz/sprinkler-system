@@ -5,7 +5,6 @@ const router = gluon.router();
 
 const imageDirectory = config.get('imageDirectory');
 
-
 router.get('/last', (req, res) => {
     let date = new Date();
     let year = date.getFullYear();

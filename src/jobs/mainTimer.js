@@ -1,6 +1,13 @@
 const Tap = require('../models/tap');
 const Setting = require('../models/setting');
 const Event = require('../models/event');
+const socketController = require('./socketController');
+
+function delay(ms) {
+  return new Promise(function (resolve) {
+    setTimeout(resolve, ms);
+  });
+}
 
 module.exports = (done) => {
   Setting.find({
@@ -9,6 +16,7 @@ module.exports = (done) => {
     }
   }).then((active) => {
     if (active.value != '1') {
+      socketController.NightMode();
       done();
       return;
     }
@@ -32,6 +40,8 @@ module.exports = (done) => {
             });
 
             Event.log('sprinkling', 'Sulama tamamlandı, otomatik olarak bekleme moduna alındı.');
+
+            socketController.PrintText('Tüm alanlar sulandi. ');
             return;
           }
 
@@ -41,6 +51,7 @@ module.exports = (done) => {
           }
 
           Event.log('sprinkling', tap.name + ' alanı sulanmaya başlandı.');
+          socketController.PrintText(tap.name + ' sulanıyor. ');
           tap.save().then(() => {
             done()
           });
@@ -52,6 +63,7 @@ module.exports = (done) => {
         tap.cycle = null;
         tap.status = 'DONE';
         Event.log('sprinkling', tap.name + ' alanının sulaması tamamlandı.');
+        socketController.PrintText(tap.name + ' sulandı ');
       }
 
       tap.save().then(() => {

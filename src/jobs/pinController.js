@@ -36,11 +36,13 @@ module.exports = () => {
       }
 
       if (tap.status == 'OPERATIVE') {
-        pins[tap.gpio].writeSync(1);
-        logger.log('pin {0} setted to {1}', tap.gpio, 1);
+        pins[tap.gpio].write(1, function () {
+          logger.debug('pin {0} setted to {1}', tap.gpio, 1);
+        });
       } else {
-        pins[tap.gpio].writeSync(0);
-        logger.log('pin {0} setted to {1}', tap.gpio, 0);
+        pins[tap.gpio].write(0, function () {
+          logger.debug('pin {0} setted to {1}', tap.gpio, 0);
+        });
       }
     });
   });

@@ -26,5 +26,6 @@
   "logger": {
     "level": "DEBUG"
   },
-  "imageDirectory": "/home/pi/Desktop/resimler"
+  "imageDirectory": "/home/pi/Desktop/resimler",
+  "socket": "http://localhost:90"
 }
