@@ -1,7 +1,10 @@
 const config = require('config');
 const socket = require('socket.io-client')(config.get('socket'));
 
+var lastIR = '';
 exports.IRControl = function IRControl(data) {
+    if (data != 'O' && data != 'F') lastIR = data;
+
     socket.emit('show', '#i' + data);
 }
 
@@ -35,12 +38,19 @@ exports.NightMode = function () {
     let hour = new Date().getHours();
     let minutes = new Date().getMinutes();
 
-    if ((hour >= 20 && hour <= 23) || (hour == 1 && minutes < 35)) { // 20-00
+    if ((hour >= 20 && hour <= 23) || (hour == 1 && minutes < 37)) { // 20-00
         if (exports.IROn()) {
             exports.HappyFace();
             setTimeout(function () {
                 exports.IRControl('W');
             }, 1000);
+        } else {
+            if (lastIR != 'W') {
+                exports.HappyFace();
+                setTimeout(function () {
+                    exports.IRControl('W');
+                }, 1000);
+            }
         }
     } else {
         if (exports.IROff()) {
