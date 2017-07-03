@@ -5,7 +5,7 @@ exports.IRControl = function IRControl(data) {
     socket.emit('show', '#i' + data);
 }
 
-var irStatus = false;
+var irStatus = null;
 
 exports.IROn = function () {
     if (irStatus == true) return;
